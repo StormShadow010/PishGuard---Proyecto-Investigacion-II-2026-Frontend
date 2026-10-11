@@ -1,0 +1,66 @@
+<section class="admin">
+  @if (!dentro()) {
+    <div class="estudio-card">
+      <h1>Administración</h1>
+      <label for="clave">Clave</label>
+      <input id="clave" type="password" #clave (keyup.enter)="entrar(clave.value)" />
+      @if (error()) {
+        <p class="estudio-error">{{ error() }}</p>
+      }
+      <button class="estudio-btn" (click)="entrar(clave.value)">Entrar</button>
+    </div>
+  } @else {
+    <header class="barra">
+      <h1>Respuestas</h1>
+      <div>
+        <button (click)="cargar()">Actualizar</button>
+        <button class="principal" (click)="exportar()">Exportar CSV</button>
+      </div>
+    </header>
+
+    <p class="resumen">
+      Sesiones iniciadas: <strong>{{ resumen().sesiones }}</strong> · Completas:
+      <strong>{{ resumen().completas }}</strong> · Mostrando las últimas
+      {{ filas().length }} respuestas
+    </p>
+
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr>
+            <th>Sesión</th>
+            <th>Programa</th>
+            <th>Estímulo</th>
+            <th>Fase</th>
+            <th>Tipo</th>
+            <th>Opción</th>
+            <th>Correcta</th>
+            <th>Cliente (ms)</th>
+            <th>Servidor (ms)</th>
+            <th>Respondido</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (f of filas(); track f.sesion_id + f.estimulo_id) {
+            <tr>
+              <td>{{ f.sesion_id.slice(0, 8) }}</td>
+              <td>{{ f.programa }}</td>
+              <td>{{ f.estimulo_id }}</td>
+              <td>{{ f.fase }}</td>
+              <td>{{ f.tipo }}</td>
+              <td>{{ f.opcion }}</td>
+              <td>{{ f.correcta ? 'Sí' : 'No' }}</td>
+              <td>{{ f.latencia_ms }}</td>
+              <td>{{ f.servidor_ms }}</td>
+              <td>{{ f.respondido_en }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="10">Aún no hay respuestas.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

@@ -1,0 +1,57 @@
+<section class="ensayo">
+  @if (error()) {
+    <p class="pregunta">No pudimos conectar con el servidor. Recarga la página para continuar.</p>
+  } @else if (transicion(); as t) {
+    <div class="estudio-card">
+      @if (t === 'intervencion') {
+        <h1>Segunda parte</h1>
+        <p>Ahora, después de cada respuesta, verás una explicación sobre el mensaje.</p>
+      } @else {
+        <h1>Última parte</h1>
+        <p>Verás unos mensajes más, de nuevo sin explicación.</p>
+      }
+      <button class="estudio-btn" (click)="seguir()">Continuar</button>
+    </div>
+  } @else if (ensayo(); as e) {
+    <p class="progreso">{{ e.posicion }} de {{ e.total }}</p>
+
+    @if (e.estimulo!.canal === 'correo') {
+      <article class="estimulo correo">
+        <p class="remitente"><strong>De:</strong> {{ e.estimulo!.remitente }}</p>
+        <p class="asunto">{{ e.estimulo!.asunto }}</p>
+        <p class="cuerpo">{{ e.estimulo!.cuerpo }}</p>
+        @if (e.estimulo!.enlace) {
+          <span class="enlace">{{ e.estimulo!.enlace }}</span>
+        }
+      </article>
+    } @else {
+      <article class="estimulo sms">
+        <p class="remitente">{{ e.estimulo!.remitente }}</p>
+        <div class="burbuja">
+          {{ e.estimulo!.cuerpo }}
+          @if (e.estimulo!.enlace) {
+            <span class="enlace">{{ e.estimulo!.enlace }}</span>
+          }
+        </div>
+      </article>
+    }
+
+    @if (feedback(); as f) {
+      <div class="feedback" [class.acierto]="f.correcta">
+        <p class="veredicto">
+          {{ f.correcta ? 'Correcto.' : 'No exactamente.' }}
+          Este mensaje era {{ f.tipo === 'phishing' ? 'phishing' : 'legítimo' }}.
+        </p>
+        <p>{{ f.feedback }}</p>
+      </div>
+      <button class="estudio-btn" (click)="continuar()">Siguiente</button>
+    } @else {
+      <p class="pregunta">¿Qué es este mensaje?</p>
+      <div class="opciones">
+        <button [disabled]="!listo()" (click)="responder('phishing')">Phishing</button>
+        <button [disabled]="!listo()" (click)="responder('legitimo')">Legítimo</button>
+        <button [disabled]="!listo()" (click)="responder('no_seguro')">No estoy seguro</button>
+      </div>
+    }
+  }
+</section>

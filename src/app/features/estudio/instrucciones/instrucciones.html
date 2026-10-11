@@ -1,0 +1,38 @@
+<section class="estudio-card">
+  <h1>Cómo funciona</h1>
+  <ul>
+    <li>Verás mensajes uno por uno, como llegarían a tu correo o celular.</li>
+    <li>
+      Para cada uno, elige: <strong>Phishing</strong> (intento de fraude),
+      <strong>Legítimo</strong> o <strong>No estoy seguro</strong>.
+    </li>
+    <li>Responde como lo harías normalmente. No hay límite de tiempo y no puedes devolverte.</li>
+    <li>Hazlo sin consultar a nadie ni buscar en otra pestaña.</li>
+  </ul>
+  <p>
+    <strong>El banco de este estudio es ficticio.</strong> Imagina que eres cliente de Banco Andino.
+    Sus canales oficiales son:
+  </p>
+  <ul>
+    <li>Sitio web: bancoandino.com.co</li>
+    <li>Correos: terminan en &#64;bancoandino.com.co</li>
+    <li>Mensajes de texto: desde el número corto 891234</li>
+  </ul>
+
+  <p><strong>Práctica (no cuenta):</strong></p>
+  <div class="practica">
+    <p class="remitente">Domicilios Ya</p>
+    <p>Tu pedido #4821 va en camino. Llega en 15 minutos.</p>
+  </div>
+
+  @if (!practicado()) {
+    <div class="opciones">
+      <button (click)="practicado.set(true)">Phishing</button>
+      <button (click)="practicado.set(true)">Legítimo</button>
+      <button (click)="practicado.set(true)">No estoy seguro</button>
+    </div>
+  } @else {
+    <p>Así se responde. Ese era solo de práctica.</p>
+    <button class="estudio-btn" (click)="comenzar()">Comenzar</button>
+  }
+</section>

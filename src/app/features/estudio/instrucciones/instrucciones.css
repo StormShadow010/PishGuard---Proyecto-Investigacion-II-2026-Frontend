@@ -1,0 +1,23 @@
+.practica {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+.remitente {
+  font-weight: 600;
+}
+.opciones {
+  display: grid;
+  gap: 0.75rem;
+}
+.opciones button {
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--surface-card);
+  border: 2px solid var(--border-color);
+  border-radius: 0.75rem;
+  cursor: pointer;
+}

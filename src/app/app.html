@@ -1,24 +1,65 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    <a routerLink="/" class="navbar-logo">
-      <div class="logo-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+@if (!enEstudio()) {
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a routerLink="/" class="navbar-logo">
+        <div class="logo-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </div>
+        <span class="logo-text">PhishGuard</span>
+      </a>
+
+      <div class="navbar-links" [class.abierto]="menuAbierto()" (click)="menuAbierto.set(false)">
+        <a
+          routerLink="/"
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Inicio</a
+        >
+        <a routerLink="/aprende" class="nav-link" routerLinkActive="active">Aprende</a>
+        <a routerLink="/proyecto" class="nav-link" routerLinkActive="active">Acerca de</a>
+        <a routerLink="/estudio" class="nav-cta">Participar</a>
       </div>
-      <span class="logo-text">PhishGuard</span>
-    </a>
-    
-    <div class="navbar-links">
-      <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-      <a routerLink="/acerca" class="nav-link" routerLinkActive="active">Acerca de</a>
+
+      <!-- Mobile Menu Button (Optional visual only for now) -->
+      <button
+        class="mobile-menu-btn"
+        aria-label="Abrir menú"
+        [attr.aria-expanded]="menuAbierto()"
+        (click)="menuAbierto.set(!menuAbierto())"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+      </button>
     </div>
-
-    <!-- Mobile Menu Button (Optional visual only for now) -->
-    <button class="mobile-menu-btn" aria-label="Menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-    </button>
-  </div>
-</nav>
-
+  </nav>
+}
 <main class="main-content">
   <router-outlet></router-outlet>
 </main>

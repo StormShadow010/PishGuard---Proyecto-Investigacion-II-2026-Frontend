@@ -1,0 +1,31 @@
+<section class="estudio-card">
+  <h1>Antes de empezar</h1>
+  <p>Tres preguntas rápidas sobre ti.</p>
+
+  <label for="programa">Programa</label>
+  <select id="programa" [(ngModel)]="programa">
+    <option value="" disabled>Selecciona tu programa</option>
+    @for (p of programas; track p) {
+      <option [value]="p">{{ p }}</option>
+    }
+  </select>
+
+  <label for="semestre">Semestre</label>
+  <input id="semestre" type="number" min="1" max="12" inputmode="numeric" [(ngModel)]="semestre" />
+
+  <label>¿Tu programa pertenece al área de sistemas o tecnología informática?</label>
+  <label class="check"
+    ><input type="radio" name="area" [value]="true" [(ngModel)]="area" /> <span>Sí</span></label
+  >
+  <label class="check"
+    ><input type="radio" name="area" [value]="false" [(ngModel)]="area" /> <span>No</span></label
+  >
+
+  @if (error()) {
+    <p class="estudio-error">No pudimos conectar con el servidor. Intenta de nuevo.</p>
+  }
+
+  <button class="estudio-btn" [disabled]="!valido || enviando()" (click)="enviar()">
+    {{ enviando() ? 'Guardando…' : 'Continuar' }}
+  </button>
+</section>

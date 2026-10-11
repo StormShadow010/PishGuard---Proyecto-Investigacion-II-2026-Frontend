@@ -1,0 +1,28 @@
+<section class="estudio-card">
+  <h1>Consentimiento informado</h1>
+
+  <p>
+    Te invitamos a participar en un estudio del curso Proyecto de Investigación II de la ETITC sobre
+    cómo las personas evalúan mensajes relacionados con servicios bancarios.
+  </p>
+
+  <ul>
+    <li>
+      Verás una serie de mensajes simulados y dirás qué opinas de cada uno. Toma unos 10 minutos.
+    </li>
+    <li>
+      Tu participación es voluntaria. Puedes retirarte en cualquier momento cerrando la página.
+    </li>
+    <li>Es anónimo: no pedimos nombre, correo ni documento.</li>
+    <li>Registramos tu programa, semestre, tus respuestas y el tiempo que tardas en responder.</li>
+    <li>Los datos se usan solo con fines académicos, conforme a la Ley 1581 de 2012.</li>
+    <li>Ningún mensaje es real ni te pedirá datos personales o bancarios.</li>
+  </ul>
+
+  <label class="check">
+    <input type="checkbox" (change)="marcar($event)" />
+    <span>He leído la información y acepto participar.</span>
+  </label>
+
+  <button class="estudio-btn" [disabled]="!acepta()" (click)="continuar()">Continuar</button>
+</section>
