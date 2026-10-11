@@ -1,1 +1,3 @@
-export const environment = { apiUrl: 'http://localhost:3000' };
+export const environment = {
+  apiUrl: 'https://pishguard-proyecto-investigacion-ii-2026.onrender.com',
+};
